@@ -10,17 +10,17 @@ prevWeight = 0
 
 for line in sys.stdin:
     #sys.stderr.write("! " + line)
-    if re.search("^Translate|^$", line):  # or line == "\n":  # if next letter or word is started
+    if re.search(r"^Translate|^$", line):  # or line == "\n":  # if next letter or word is started
       if prevLineNo > 0:  # print out result for previous letter
          sys.stdout.write (str(prevLineNo) + "\t" + str(prevWeight) + "\n")  
       prevWeight = 0
       prevLineNo = 0
     else:
-      res = re.search("^\s*?(\d+)", line)
+      res = re.search(r"^\s*?(\d+)", line)
       if res:
         weight = int(res.group(1))
         #sys.stderr.write(">  weight:" + str(weight) + "\n")
-      res = re.search("^\s*?\d+\s+(\d+?):", line)
+      res = re.search(r"^\s*?\d+\s+(\d+?):", line)
       if res:
         lineNo = int(res.group(1))
         #sys.stderr.write(">  lineNo:" + str(lineNo) + "\n")
